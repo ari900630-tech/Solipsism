@@ -28,7 +28,7 @@ object ThemeApplication {
         activity.theme.applyStyle(
             AccentPalette.overlayFor(
                 effectiveTheme,
-                preferences.getInt(ACCENT_PALETTE, AccentPalette.TEAL.ordinal),
+                preferences.getInt(ACCENT_PALETTE, AccentPalette.BLUE.ordinal),
                 preferences.getBoolean(MATCH_SYSTEM_ACCENT, false)
             ),
             true
