@@ -1,6 +1,7 @@
 package com.krystelligence.solipsism.preference
 
 import com.krystelligence.solipsism.AppTheme
+import com.krystelligence.solipsism.AccentPalette
 import com.krystelligence.solipsism.browser.di.UserPrefs
 import com.krystelligence.solipsism.browser.proxy.ProxyChoice
 import com.krystelligence.solipsism.browser.search.SearchBoxDisplayChoice
@@ -522,7 +523,7 @@ class UserPreferences @Inject constructor(
     var homepageDateTimeOpacity by preferences.intPreference(HOMEPAGE_DATE_TIME_OPACITY, 80)
 
     /** The selected fixed accent palette. */
-    var accentPalette by preferences.intPreference(ACCENT_PALETTE, 0)
+    var accentPalette by preferences.intPreference(ACCENT_PALETTE, AccentPalette.BLUE.ordinal)
 
     /** True when the app should use Android's dynamic system accent on API 31+. */
     var matchSystemAccent by preferences.booleanPreference(MATCH_SYSTEM_ACCENT, false)
