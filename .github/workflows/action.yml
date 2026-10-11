@@ -20,9 +20,16 @@ jobs:
           java-version: 17
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
-      - name: Build
-        run: ./gradlew build
-      - name: Check
+      - name: Build and test
+        run: ./gradlew build :app:assembleSolipsismBrowserDebug
+      - name: Check dependency sorting
         run: ./gradlew checkSortDependencies
       - name: Check localization resources
         run: python3 scripts/check_localized_resources.py
+      - name: Upload installable debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Solipsism-Browser-debug-APK
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
