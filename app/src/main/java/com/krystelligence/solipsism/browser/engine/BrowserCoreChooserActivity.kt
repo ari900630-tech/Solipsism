@@ -76,6 +76,18 @@ class BrowserCoreChooserActivity : AppCompatActivity() {
         enginePackage = AntaresEnginePackage(applicationContext)
         launchBrowserAfterChoice = !intent.getBooleanExtra(EXTRA_MANAGE_ONLY, false)
 
+        // First launch: use the built-in Android WebView core and open the browser
+        // immediately instead of showing the multi-screen setup flow.
+        // Users can still change appearance, rail position, and search engine in Settings.
+        if (launchBrowserAfterChoice && !preferences.onboardingComplete) {
+            preferences.select(BrowserCore.WEBVIEW)
+            if (userPreferences.searchChoice == 0) {
+                userPreferences.searchChoice = SearchEngineProvider.DEFAULT_SEARCH_ENGINE_INDEX
+            }
+            launchBrowser()
+            return
+        }
+
         if (launchBrowserAfterChoice && preferences.onboardingComplete && selectionIsUsable()) {
             launchBrowser()
             return
