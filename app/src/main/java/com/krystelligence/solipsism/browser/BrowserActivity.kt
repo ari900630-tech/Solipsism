@@ -1026,7 +1026,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserContract.View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val tabConfiguration = TabConfiguration.SOLIPSISM
+        val tabConfiguration = TabConfiguration.DRAWER_BOTTOM
         val bottomTabsBinding = if (tabConfiguration == TabConfiguration.DRAWER_BOTTOM) {
             BrowserBottomTabsBinding.inflate(layoutInflater)
         } else {
