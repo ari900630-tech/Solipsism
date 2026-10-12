@@ -253,7 +253,8 @@
                             android:scaleType="center"
                             android:padding="12dp"
                             app:srcCompat="@drawable/ic_action_home"
-                            app:tint="?attr/iconColor" />
+                            app:tint="?attr/iconColor" 
+                            android:visibility="gone"/>
 
                         <ImageView
                             android:id="@+id/new_tab_button"
@@ -264,7 +265,8 @@
                             android:scaleType="center"
                             android:padding="12dp"
                             app:srcCompat="@drawable/ic_action_plus"
-                            app:tint="?attr/iconColor" />
+                            app:tint="?attr/iconColor" 
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <ProgressBar
