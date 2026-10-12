@@ -65,7 +65,9 @@ def placeholders_match(default_element, translated_element):
             for item in default_element
         }
         expected = default_items.get("other", next(iter(default_items.values()), []))
-        return all(placeholders(item) == expected for item in translated_element)
+        # Some languages (notably Arabic) spell out zero/one/two and omit
+        # the numeric placeholder in those forms; both patterns are valid.
+        return all(placeholders(item) in (expected, []) for item in translated_element)
     return placeholders(default_element) == placeholders(translated_element)
 
 
