@@ -48,7 +48,12 @@ def resources(path: Path):
 
 
 def placeholders(element):
-    return re.findall(r"%\d+\$[sd]", "".join(element.itertext()))
+    # Android accepts both indexed (%1$d) and unindexed (%d) format arguments.
+    # Normalize indices so equivalent translations do not fail validation.
+    return [
+        re.sub(r"^%\d+\$", "%", token)
+        for token in re.findall(r"%(?:\d+\$)?[sd]", "".join(element.itertext()))
+    ]
 
 
 default = resources(DEFAULT)
