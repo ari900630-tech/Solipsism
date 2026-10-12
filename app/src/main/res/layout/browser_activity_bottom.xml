@@ -52,6 +52,7 @@
                         android:id="@+id/desktop_tabs_list"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/desktop_tab_height"
+                        android:visibility="gone"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
                         android:divider="@null"
@@ -199,6 +200,66 @@
                             </FrameLayout>
                         </LinearLayout>
                     </com.google.android.material.appbar.MaterialToolbar>
+
+                    <LinearLayout
+                        android:id="@+id/bottom_navigation_actions"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_marginTop="2dp"
+                        android:background="@android:color/transparent"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="4"
+                        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                        <ImageView
+                            android:id="@+id/action_back"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/icon_button_background"
+                            android:contentDescription="@string/action_back"
+                            android:scaleType="center"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_action_back"
+                            app:tint="?attr/iconColor" />
+
+                        <ImageView
+                            android:id="@+id/action_forward"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/icon_button_background"
+                            android:contentDescription="@string/action_forward"
+                            android:scaleType="center"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_action_forward"
+                            app:tint="?attr/iconColor" />
+
+                        <ImageView
+                            android:id="@+id/action_home"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/icon_button_background"
+                            android:contentDescription="@string/action_homepage"
+                            android:scaleType="center"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_action_home"
+                            app:tint="?attr/iconColor" />
+
+                        <ImageView
+                            android:id="@+id/new_tab_button"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/icon_button_background"
+                            android:contentDescription="@string/action_new_tab"
+                            android:scaleType="center"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_action_plus"
+                            app:tint="?attr/iconColor" />
+                    </LinearLayout>
 
                     <ProgressBar
                         android:id="@+id/progress_view"
@@ -356,59 +417,7 @@
                 android:dividerHeight="0dp"
                 android:overScrollMode="ifContentScrolls" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/browser_sheet_section_background"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="4">
 
-                <ImageView
-                    android:id="@+id/action_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_button_background"
-                    android:contentDescription="@string/action_back"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_action_back"
-                    app:tint="?attr/iconColor" />
-
-                <ImageView
-                    android:id="@+id/action_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_button_background"
-                    android:contentDescription="@string/action_homepage"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_action_home"
-                    app:tint="?attr/iconColor" />
-
-                <ImageView
-                    android:id="@+id/action_forward"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_button_background"
-                    android:contentDescription="@string/action_forward"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_action_forward"
-                    app:tint="?attr/iconColor" />
-
-                <ImageView
-                    android:id="@+id/new_tab_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_button_background_selected"
-                    android:contentDescription="@string/action_new_tab"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_action_plus"
-                    app:tint="?attr/iconColor" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
