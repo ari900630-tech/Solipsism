@@ -49,11 +49,24 @@ def resources(path: Path):
 
 def placeholders(element):
     # Android accepts both indexed (%1$d) and unindexed (%d) format arguments.
-    # Normalize indices so equivalent translations do not fail validation.
     return [
         re.sub(r"^%\d+\$", "%", token)
         for token in re.findall(r"%(?:\d+\$)?[sd]", "".join(element.itertext()))
     ]
+
+
+def placeholders_match(default_element, translated_element):
+    if default_element.tag.rsplit("}", 1)[-1] == "plurals":
+        # Locale plural categories differ (for example, Russian has more forms).
+        # Validate each translated form against the default "other" form instead
+        # of comparing a flattened list of all plural forms.
+        default_items = {
+            item.attrib.get("quantity"): placeholders(item)
+            for item in default_element
+        }
+        expected = default_items.get("other", next(iter(default_items.values()), []))
+        return all(placeholders(item) == expected for item in translated_element)
+    return placeholders(default_element) == placeholders(translated_element)
 
 
 default = resources(DEFAULT)
@@ -69,7 +82,7 @@ for locale, paths in LOCALES.items():
     )
     placeholder_errors = sorted(
         key for key in set(default) & set(translated)
-        if placeholders(default[key]) != placeholders(translated[key])
+        if not placeholders_match(default[key], translated[key])
     )
     # Android intentionally falls back to default resources for untranslated keys.
     # Missing translations are reported but do not block a valid APK build.
